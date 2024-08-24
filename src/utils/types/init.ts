@@ -8,6 +8,8 @@ import {
   CmsItemsMenu,
 } from "./menus";
 import { MediaObjects } from "./media";
+import { UserType } from "./user";
+import { ProjectType } from "./project";
 
 export type init = {
   texts: Array<CmsText>;
@@ -23,6 +25,8 @@ export type init = {
   ingredientsMenus: Array<CmsIngredientMenu>;
   modules: Array<ModuleType>;
   files: MediaObjects;
+  users: Array<UserType>;
+  projects: Array<ProjectType>;
 };
 
 export type generalInfoValue =
@@ -84,13 +88,6 @@ export type IAMRoleType = {
   _id: string;
   title: string;
   permissionBitwise: number;
-};
-
-export type UserType = {
-  _id: string;
-  roleId: string;
-  username: string;
-  uuid: string;
 };
 
 export type ModuleType = {

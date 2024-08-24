@@ -10,7 +10,7 @@ import { FormDataType } from "utils/types/form";
 import FORM_INPUTS_TYPES from "constants/form-inputs-types";
 import { useAppSelector } from "utils/hooks/useRedux";
 import Api from "api/requests";
-import { UserType } from "utils/types/init";
+import { UserType } from "utils/types/user";
 
 type Props = {
   payload: Payload;
