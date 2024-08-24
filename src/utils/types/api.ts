@@ -3,6 +3,7 @@ import { AxiosRequestConfig } from "axios";
 export type serverSettings = {
   next?: NextFetchRequestConfig;
   cache?: RequestCache;
+  url?: string;
 };
 export type serverProps = {
   settings?: serverSettings | undefined;
