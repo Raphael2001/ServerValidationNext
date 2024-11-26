@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 
-import styles from "./SItePopup.module.scss";
+import styles from "./SitePopup.module.scss";
 import SlidePopup from "popups/Presets/SlidePopup/SlidePopup";
 import FormCreator from "components/FormCreator/FormCreator";
 import FORM_INPUTS_TYPES from "constants/form-inputs-types";
