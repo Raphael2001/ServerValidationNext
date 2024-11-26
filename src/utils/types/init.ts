@@ -10,6 +10,7 @@ import {
 import { MediaObjects } from "./media";
 import { UserType } from "./user";
 import { ProjectType } from "./project";
+import { Site } from "./site";
 
 export type init = {
   texts: Array<CmsText>;
@@ -27,6 +28,7 @@ export type init = {
   files: MediaObjects;
   users: Array<UserType>;
   projects: Array<ProjectType>;
+  sites: Array<Site>;
 };
 
 export type generalInfoValue =

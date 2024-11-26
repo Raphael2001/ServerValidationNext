@@ -19,6 +19,7 @@ const initialState: init = {
   files: {},
   users: [],
   projects: [],
+  sites: [],
 };
 
 export const initSlice = createSlice({
