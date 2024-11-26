@@ -17,6 +17,7 @@ const POPUP_TYPES = {
   PRODUCT: "PRODUCT",
   FILES: "FILES",
   PROJECT: "PROJECT",
+  SITE: "SITE",
 };
 
 export default POPUP_TYPES;

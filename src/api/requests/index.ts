@@ -496,6 +496,33 @@ const Api = (function () {
     return ApiManager.addCall(props, API_METHODS.DELETE, "project", onSuccess);
   }
 
+  async function addSite(props: ApiProps = {}) {
+    function onSuccess(res: ApiResponse) {
+      Store.dispatch(addNewKey({ value: res.body, name: "sites" }));
+      typeof props.onSuccess === "function" && props.onSuccess(res.body);
+    }
+    props.headers = await accessTokenHeaders();
+    return ApiManager.addCall(props, API_METHODS.POST, "site", onSuccess);
+  }
+
+  async function updateSite(props: ApiProps = {}) {
+    function onSuccess(res: ApiResponse) {
+      Store.dispatch(updateKey({ value: res.body, name: "sites" }));
+      typeof props.onSuccess === "function" && props.onSuccess(res.body);
+    }
+    props.headers = await accessTokenHeaders();
+    return ApiManager.addCall(props, API_METHODS.PUT, "site", onSuccess);
+  }
+
+  async function deleteSite(props: ApiProps = {}) {
+    function onSuccess(res: ApiResponse) {
+      Store.dispatch(deleteKeyById({ value: res.body, name: "sites" }));
+      typeof props.onSuccess === "function" && props.onSuccess(res.body);
+    }
+    props.headers = await accessTokenHeaders();
+    return ApiManager.addCall(props, API_METHODS.DELETE, "site", onSuccess);
+  }
+
   return {
     initCms,
     upsertText,
@@ -538,6 +565,9 @@ const Api = (function () {
     addProject,
     updateProject,
     deleteProject,
+    addSite,
+    updateSite,
+    deleteSite,
   };
 })();
 
