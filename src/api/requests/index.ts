@@ -213,33 +213,6 @@ const Api = (function () {
     return ApiManager.addCall(props, API_METHODS.DELETE, "links", onSuccess);
   }
 
-  async function createMetaTags(props: ApiProps = {}) {
-    function onSuccess(res: ApiResponse) {
-      Store.dispatch(addNewKey({ name: "metaTags", value: res.body }));
-      typeof props.onSuccess === "function" && props.onSuccess(res.body);
-    }
-    props.headers = await accessTokenHeaders();
-    return ApiManager.addCall(props, API_METHODS.POST, "metaTags", onSuccess);
-  }
-
-  async function updateMetaTags(props: ApiProps = {}) {
-    function onSuccess(res: ApiResponse) {
-      Store.dispatch(updateKey({ name: "metaTags", value: res.body }));
-      typeof props.onSuccess === "function" && props.onSuccess(res.body);
-    }
-    props.headers = await accessTokenHeaders();
-    return ApiManager.addCall(props, API_METHODS.PUT, "metaTags", onSuccess);
-  }
-
-  async function deleteMetaTags(props: ApiProps = {}) {
-    function onSuccess(res: ApiResponse) {
-      Store.dispatch(deleteKeyById({ value: res.body, name: "metaTags" }));
-      typeof props.onSuccess === "function" && props.onSuccess(res.body);
-    }
-    props.headers = await accessTokenHeaders();
-    return ApiManager.addCall(props, API_METHODS.DELETE, "metaTags", onSuccess);
-  }
-
   async function createRole(props: ApiProps = {}) {
     function onSuccess(res: ApiResponse) {
       Store.dispatch(addNewKey({ value: res.body, name: "iamRoles" }));
@@ -283,172 +256,6 @@ const Api = (function () {
     }
     props.headers = await accessTokenHeaders();
     return ApiManager.addCall(props, API_METHODS.DELETE, "cmsUsers", onSuccess);
-  }
-
-  async function addItem(props: ApiProps = {}) {
-    function onSuccess(res: ApiResponse) {
-      Store.dispatch(addNewKey({ value: res.body, name: "items" }));
-      typeof props.onSuccess === "function" && props.onSuccess(res.body);
-    }
-    props.headers = await accessTokenHeaders();
-    return ApiManager.addCall(props, API_METHODS.POST, "items", onSuccess);
-  }
-
-  async function updateItem(props: ApiProps = {}) {
-    function onSuccess(res: ApiResponse) {
-      Store.dispatch(updateKey({ value: res.body, name: "items" }));
-      typeof props.onSuccess === "function" && props.onSuccess(res.body);
-    }
-    props.headers = await accessTokenHeaders();
-    return ApiManager.addCall(props, API_METHODS.PUT, "items", onSuccess);
-  }
-
-  async function deleteItem(props: ApiProps = {}) {
-    function onSuccess(res: ApiResponse) {
-      Store.dispatch(deleteKeyById({ value: res.body, name: "items" }));
-      typeof props.onSuccess === "function" && props.onSuccess(res.body);
-    }
-    props.headers = await accessTokenHeaders();
-    return ApiManager.addCall(props, API_METHODS.DELETE, "items", onSuccess);
-  }
-
-  async function addItemsMenu(props: ApiProps = {}) {
-    function onSuccess(res: ApiResponse) {
-      Store.dispatch(addNewKey({ value: res.body, name: "itemsMenu" }));
-      typeof props.onSuccess === "function" && props.onSuccess(res.body);
-    }
-    props.headers = await accessTokenHeaders();
-    return ApiManager.addCall(props, API_METHODS.POST, "itemsMenu", onSuccess);
-  }
-
-  async function updateItemsMenu(props: ApiProps = {}) {
-    function onSuccess(res: ApiResponse) {
-      Store.dispatch(updateKey({ value: res.body, name: "itemsMenu" }));
-      typeof props.onSuccess === "function" && props.onSuccess(res.body);
-    }
-    props.headers = await accessTokenHeaders();
-    return ApiManager.addCall(props, API_METHODS.PUT, "itemsMenu", onSuccess);
-  }
-
-  async function deleteItemsMenu(props: ApiProps = {}) {
-    function onSuccess(res: ApiResponse) {
-      Store.dispatch(deleteKeyById({ value: res.body, name: "itemsMenu" }));
-      typeof props.onSuccess === "function" && props.onSuccess(res.body);
-    }
-    props.headers = await accessTokenHeaders();
-    return ApiManager.addCall(
-      props,
-      API_METHODS.DELETE,
-      "itemsMenu",
-      onSuccess
-    );
-  }
-
-  async function sort(props: ApiProps = {}) {
-    function onSuccess(res: ApiResponse) {
-      typeof props.onSuccess === "function" && props.onSuccess(res.body);
-    }
-    props.headers = await accessTokenHeaders();
-    return ApiManager.addCall(props, API_METHODS.POST, "sort", onSuccess);
-  }
-
-  async function addItemIngredient(props: ApiProps = {}) {
-    function onSuccess(res: ApiResponse) {
-      Store.dispatch(addNewKey({ value: res.body, name: "itemIngredients" }));
-      typeof props.onSuccess === "function" && props.onSuccess(res.body);
-    }
-    props.headers = await accessTokenHeaders();
-    return ApiManager.addCall(
-      props,
-      API_METHODS.POST,
-      "itemIngredients",
-      onSuccess
-    );
-  }
-
-  async function updateItemIngredient(props: ApiProps = {}) {
-    function onSuccess(res: ApiResponse) {
-      Store.dispatch(updateKey({ value: res.body, name: "itemIngredients" }));
-      typeof props.onSuccess === "function" && props.onSuccess(res.body);
-    }
-    props.headers = await accessTokenHeaders();
-    return ApiManager.addCall(
-      props,
-      API_METHODS.PUT,
-      "itemIngredients",
-      onSuccess
-    );
-  }
-
-  async function deleteItemIngredient(props: ApiProps = {}) {
-    function onSuccess(res: ApiResponse) {
-      Store.dispatch(
-        deleteKeyById({ value: res.body, name: "itemIngredients" })
-      );
-      typeof props.onSuccess === "function" && props.onSuccess(res.body);
-    }
-    props.headers = await accessTokenHeaders();
-    return ApiManager.addCall(
-      props,
-      API_METHODS.DELETE,
-      "itemIngredients",
-      onSuccess
-    );
-  }
-
-  async function updateStock(props: ApiProps = {}) {
-    function onSuccess(res: ApiResponse) {
-      Store.dispatch(
-        updateKey({ value: res.body, name: props.payload.fieldName })
-      );
-      typeof props.onSuccess === "function" && props.onSuccess(res.body);
-    }
-    props.headers = await accessTokenHeaders();
-    return ApiManager.addCall(props, API_METHODS.PUT, "stock", onSuccess);
-  }
-
-  async function addIngredientsMenu(props: ApiProps = {}) {
-    function onSuccess(res: ApiResponse) {
-      Store.dispatch(addNewKey({ value: res.body, name: "ingredientsMenus" }));
-      typeof props.onSuccess === "function" && props.onSuccess(res.body);
-    }
-    props.headers = await accessTokenHeaders();
-    return ApiManager.addCall(
-      props,
-      API_METHODS.POST,
-      "ingredientsMenu",
-      onSuccess
-    );
-  }
-
-  async function updateIngredientsMenu(props: ApiProps = {}) {
-    function onSuccess(res: ApiResponse) {
-      Store.dispatch(updateKey({ value: res.body, name: "ingredientsMenus" }));
-      typeof props.onSuccess === "function" && props.onSuccess(res.body);
-    }
-    props.headers = await accessTokenHeaders();
-    return ApiManager.addCall(
-      props,
-      API_METHODS.PUT,
-      "ingredientsMenu",
-      onSuccess
-    );
-  }
-
-  async function deleteIngredientsMenu(props: ApiProps = {}) {
-    function onSuccess(res: ApiResponse) {
-      Store.dispatch(
-        deleteKeyById({ value: res.body, name: "ingredientsMenus" })
-      );
-      typeof props.onSuccess === "function" && props.onSuccess(res.body);
-    }
-    props.headers = await accessTokenHeaders();
-    return ApiManager.addCall(
-      props,
-      API_METHODS.DELETE,
-      "ingredientsMenu",
-      onSuccess
-    );
   }
 
   async function addFile(props: ApiProps = {}) {
@@ -538,28 +345,13 @@ const Api = (function () {
     removeMedia,
     upsertLink,
     removeLink,
-    createMetaTags,
-    updateMetaTags,
-    deleteMetaTags,
+
     createRole,
     updateRole,
     createUser,
     updateUser,
     deleteUser,
-    addItem,
-    updateItem,
-    deleteItem,
-    addItemsMenu,
-    updateItemsMenu,
-    deleteItemsMenu,
-    sort,
-    addItemIngredient,
-    updateItemIngredient,
-    deleteItemIngredient,
-    updateStock,
-    addIngredientsMenu,
-    updateIngredientsMenu,
-    deleteIngredientsMenu,
+
     addFile,
     removeFile,
     addProject,

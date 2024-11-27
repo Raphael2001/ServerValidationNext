@@ -1,7 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { copy } from "utils/functions";
 import { CmsText, GeneralInfo, init, language } from "utils/types/init";
-import { CmsItemsMenu } from "utils/types/menus";
 
 const initialState: init = {
   texts: [],
@@ -9,13 +8,8 @@ const initialState: init = {
   languages: [],
   generalInfo: [],
   links: [],
-  metaTags: [],
   iamRoles: [],
-  itemsMenu: [],
   modules: [],
-  items: [],
-  itemIngredients: [],
-  ingredientsMenus: [],
   files: {},
   users: [],
   projects: [],
@@ -125,9 +119,6 @@ export const initSlice = createSlice({
         state.languages.push(action.payload);
       }
     },
-    setItemsMenu: (state: init, action: PayloadAction<Array<CmsItemsMenu>>) => {
-      state.itemsMenu = action.payload;
-    },
 
     addFileAction: (state: init, action) => {
       const fileId = action.payload._id;
@@ -152,7 +143,6 @@ export const {
   removeMediaAction,
   setGeneralInfo,
   setInit,
-  setItemsMenu,
   updateInit,
   updateKey,
   upsertLang,

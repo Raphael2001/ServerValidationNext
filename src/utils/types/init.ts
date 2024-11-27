@@ -1,12 +1,7 @@
 import TEXT_TAGS from "constants/TextTags";
 import { LinkType } from "./links";
 import { RotatingTextItem } from "./rotatingText";
-import {
-  CmsIngredient,
-  CmsIngredientMenu,
-  CmsItem,
-  CmsItemsMenu,
-} from "./menus";
+
 import { MediaObjects } from "./media";
 import { UserType } from "./user";
 import { ProjectType } from "./project";
@@ -18,12 +13,9 @@ export type init = {
   languages: Array<language>;
   generalInfo: Array<GeneralInfo>;
   links: Array<LinkType>;
-  metaTags: Array<metaTags>;
+
   iamRoles: Array<IAMRoleType>;
-  itemsMenu: Array<CmsItemsMenu>;
-  items: Array<CmsItem>;
-  itemIngredients: Array<CmsIngredient>;
-  ingredientsMenus: Array<CmsIngredientMenu>;
+
   modules: Array<ModuleType>;
   files: MediaObjects;
   users: Array<UserType>;
@@ -52,19 +44,6 @@ export type GeneralInfo = {
 export type language = {
   _id: string;
   lang: string;
-};
-
-export type metaTags = {
-  _id: string;
-  route: string;
-  langId: string;
-  fields: Array<metaTag>;
-};
-
-export type metaTag = {
-  metaTagId: string;
-  type: string;
-  value: string;
 };
 
 export type CmsText = {

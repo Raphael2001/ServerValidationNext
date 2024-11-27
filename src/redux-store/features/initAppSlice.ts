@@ -3,8 +3,6 @@ import { InitApp } from "utils/types/initApp";
 
 const initialState: InitApp = {
   texts: {},
-  menus: [],
-  ingredientsMenus: {},
 };
 
 export const initAppSlice = createSlice({
