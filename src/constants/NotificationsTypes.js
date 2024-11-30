@@ -1,7 +1,7 @@
 const NotificationsTypes = {
   ERROR: "ERROR",
   WARN: "WARN",
-  SUCCCESS: "SUCCESS",
+  SUCCESS: "SUCCESS",
   INFO: "INFO",
 };
 

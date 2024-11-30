@@ -34,6 +34,7 @@ export interface TableHeaderItem {
   dataset?: Array<DatasetItem>;
   displayField?: string;
   onOptionClick?: TableColorCellOptionClick;
+  copyBtn?: boolean;
 }
 
 type DatasetItem = {

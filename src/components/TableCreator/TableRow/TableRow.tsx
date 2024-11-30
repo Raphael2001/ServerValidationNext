@@ -11,6 +11,7 @@ import { InputEvent } from "utils/types/inputs";
 import { TableHeaderItem } from "utils/types/table";
 import { DragHandle } from "components/DnD/Drag/Drag";
 import { GeneralServerItem } from "utils/types/general";
+import TextCell from "../TextCell/TextCell";
 
 type Props = {
   styleRef: Object;
@@ -27,7 +28,6 @@ function TableRow({
   styles,
   dataItem,
   header,
-
   onChangeCheckBox,
   selectedCheckboxes,
   enableDrag = false,
@@ -94,6 +94,7 @@ function RenderCell({
     dataset,
     displayField = "",
     onOptionClick,
+    copyBtn = false,
   } = item;
 
   function renderContent() {
@@ -144,13 +145,13 @@ function RenderCell({
           if (foundItem && Object.hasOwn(foundItem, displayField)) {
             return foundItem[displayField];
           }
-          return value;
+          return <TextCell value={value} showCopy={copyBtn} />;
         }
 
-        return value;
+        return <TextCell value={value} showCopy={copyBtn} />;
       case TABLE_CELL_TYPES.TEXT:
       default:
-        return value;
+        return <TextCell value={value} showCopy={copyBtn} />;
     }
   }
 

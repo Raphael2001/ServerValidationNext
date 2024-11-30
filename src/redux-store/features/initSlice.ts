@@ -8,16 +8,14 @@ const initialState: Init = {
   languages: [],
   generalInfo: [],
   links: [],
-
   iamRoles: [],
-
   modules: [],
-
   files: {},
   users: [],
   syncOptions: [],
   projects: [],
   sites: [],
+  tokens: [],
 };
 
 export const initSlice = createSlice({

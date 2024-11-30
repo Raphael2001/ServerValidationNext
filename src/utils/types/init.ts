@@ -7,6 +7,7 @@ import { UserType } from "./user";
 
 import { Site } from "./site";
 import { Project } from "./project";
+import { MailsTokens } from "./mailsTokens";
 
 export type Init = {
   texts: Array<CmsText>;
@@ -14,16 +15,14 @@ export type Init = {
   languages: Array<Language>;
   generalInfo: Array<GeneralInfo>;
   links: Array<Link>;
-
   iamRoles: Array<IAMRoleType>;
-
   modules: Array<ModuleType>;
   files: MediaObjects;
   users: Array<UserType>;
   projects: Array<Project>;
   sites: Array<Site>;
-
   syncOptions: Array<SyncOption>;
+  tokens: Array<MailsTokens>;
 };
 
 export type GeneralInfoValue =

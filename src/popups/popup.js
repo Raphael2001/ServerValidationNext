@@ -22,9 +22,9 @@ import UpdateUserPopup from "./components/UpdateUserPopup/UpdateUserPopup";
 
 import { useAppSelector } from "utils/hooks/useRedux";
 import FilesPopup from "./components/FilesPopup/FilesPopup";
-import SyncDBPopup from "./components/SyncDBPopup/SyncDBPopup";
 import ProjectPopup from "./components/ProjectPopup/ProjectPopup";
 import SitePopup from "./components/SitePopup/SitePopup";
+import MailTokenPopup from "./components/MailTokenPopup/MailTokenPopup";
 
 export default function Popups({ className = "" }) {
   const popupsArray = useAppSelector((store) => store.popupsArray);
@@ -80,9 +80,11 @@ export default function Popups({ className = "" }) {
       ),
 
       [POPUP_TYPES.FILES]: <FilesPopup key={key} payload={payload} />,
-      [POPUP_TYPES.SYNC_DB]: <SyncDBPopup key={key} payload={payload} />,
       [POPUP_TYPES.PROJECT]: <ProjectPopup key={key} payload={payload} />,
       [POPUP_TYPES.SITES]: <SitePopup key={key} payload={payload} />,
+      [POPUP_TYPES.MAILS_TOKENS]: (
+        <MailTokenPopup key={key} payload={payload} />
+      ),
     };
 
     const popupToReturn =

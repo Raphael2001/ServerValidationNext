@@ -9,7 +9,7 @@ import { TableHeader } from "utils/types/table";
 import { clsx } from "utils/functions";
 import TableRow from "./TableRow/TableRow";
 import { DropWrapper } from "components/DnD/Drop/Drop";
-import { DragableItem } from "components/DnD/Drag/Drag";
+import { DraggableItem } from "components/DnD/Drag/Drag";
 import { arrayMove } from "@dnd-kit/sortable";
 
 type Props = {
@@ -27,17 +27,17 @@ function TableCreator({
   enableDrag = false,
   onChangeItems = () => {},
 }: Props) {
-  const columWidth = 100 / Object.values(header).length;
+  const columnWidth = 100 / Object.values(header).length;
 
   const deviceState = useAppSelector((store) => store.deviceState);
   const [selectedCheckboxes, setSelectedCheckbox] = useState<string[]>([]);
 
   const styleRef = useMemo(() => {
     if (deviceState.isDesktop) {
-      return { width: `${columWidth || 20}%` };
+      return { width: `${columnWidth || 20}%` };
     }
     return {};
-  }, [deviceState, columWidth]);
+  }, [deviceState, columnWidth]);
 
   function onChangeCheckBox(e: InputEvent) {
     const { target } = e;
@@ -66,7 +66,7 @@ function TableCreator({
 
   function renderRowItem({ dataItem }) {
     return (
-      <DragableItem id={dataItem._id} key={dataItem._id}>
+      <DraggableItem id={dataItem._id} key={dataItem._id}>
         <TableRow
           styleRef={styleRef}
           styles={styles}
@@ -76,7 +76,7 @@ function TableCreator({
           onChangeCheckBox={onChangeCheckBox}
           enableDrag={enableDrag}
         />
-      </DragableItem>
+      </DraggableItem>
     );
   }
 

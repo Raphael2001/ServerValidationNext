@@ -1,0 +1,9 @@
+@import "src/styles/imports.scss";
+.text-cell-wrapper {
+  display: flex;
+  align-items: center;
+  gap: rem(10);
+  .text-cell {
+    flex: 1;
+  }
+}

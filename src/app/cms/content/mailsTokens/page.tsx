@@ -12,29 +12,31 @@ import CMS_MODULES from "constants/CMSModules";
 import { useAppSelector } from "utils/hooks/useRedux";
 import PageGenerator from "components/Cms/PageGenerator/PageGenerator";
 
-function SitesPage(props) {
-  const sites = useAppSelector((store) => store.init.sites);
+function MailsTokensPage(props) {
+  const tokens = useAppSelector((store) => store.init.tokens);
 
   const header = {
     name: {
       title: "שם אתר",
       type: TABLE_CELL_TYPES.TEXT,
     },
-    url: {
-      title: "url",
+    apiToken: {
+      title: "טוקן",
       type: TABLE_CELL_TYPES.TEXT,
+      copyBtn: true,
     },
   };
   return (
     <PageGenerator
-      data={sites}
-      deleteApi={Api.deleteSite}
-      deleteTitle="למחוק את האתר הזה?"
+      data={tokens}
+      deleteApi={Api.deleteMailToken}
+      deleteTitle="למחוק את הטוקן הזה?"
       header={header}
-      module={CMS_MODULES.SITES}
-      popup={POPUP_TYPES.SITES}
+      module={CMS_MODULES.MAILS_TOKENS}
+      popup={POPUP_TYPES.MAILS_TOKENS}
+      showUpdateAction={false}
     />
   );
 }
 
-export default SitesPage;
+export default MailsTokensPage;

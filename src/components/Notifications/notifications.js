@@ -30,7 +30,7 @@ function Notifications(props) {
       [NotificationsTypes.WARN]: (
         <WarnNotification key={id} payload={payload} />
       ),
-      [NotificationsTypes.SUCCCESS]: (
+      [NotificationsTypes.SUCCESS]: (
         <SuccessNotification key={id} payload={payload} />
       ),
       [NotificationsTypes.INFO]: (

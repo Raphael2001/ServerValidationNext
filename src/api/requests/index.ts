@@ -343,6 +343,34 @@ const Api = (function () {
     return ApiManager.addCall(props, API_METHODS.DELETE, "site", onSuccess);
   }
 
+  async function addMailToken(props: ApiProps = {}) {
+    function onSuccess(res: ApiResponse) {
+      Store.dispatch(addNewKey({ value: res.body, name: "tokens" }));
+      typeof props.onSuccess === "function" && props.onSuccess(res.body);
+    }
+    props.headers = await accessTokenHeaders();
+    return ApiManager.addCall(
+      props,
+      API_METHODS.POST,
+      "mailsTokens",
+      onSuccess
+    );
+  }
+
+  async function deleteMailToken(props: ApiProps = {}) {
+    function onSuccess(res: ApiResponse) {
+      Store.dispatch(deleteKeyById({ value: res.body, name: "tokens" }));
+      typeof props.onSuccess === "function" && props.onSuccess(res.body);
+    }
+    props.headers = await accessTokenHeaders();
+    return ApiManager.addCall(
+      props,
+      API_METHODS.DELETE,
+      "mailsTokens",
+      onSuccess
+    );
+  }
+
   return {
     initCms,
     upsertText,
@@ -374,6 +402,8 @@ const Api = (function () {
     addSite,
     updateSite,
     deleteSite,
+    addMailToken,
+    deleteMailToken,
   };
 })();
 
