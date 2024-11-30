@@ -1,7 +1,7 @@
-import jwt_decode from "jwt-decode";
+import jwtDecode from "jwt-decode";
 
 // generate unique IDs
-export function generateUniqueId(length) {
+export function generateUniqueId(length = 16) {
   const result = [];
   const characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -50,7 +50,7 @@ export function formatTime(time) {
 }
 
 export function parseJWT(token) {
-  const decoded = jwt_decode(token);
+  const decoded = jwtDecode(token);
   return decoded;
 }
 

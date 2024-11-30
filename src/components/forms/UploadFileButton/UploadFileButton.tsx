@@ -4,7 +4,7 @@ import React, { ChangeEventHandler } from "react";
 
 import styles from "./UploadFileButton.module.scss";
 import { clsx, generateUniqueId } from "utils/functions";
-import BasicInputErrrorMsg from "components/Basic/BasicInputErrrorMsg/BasicInputErrrorMsg";
+import BasicInputErrorMsg from "components/Basic/BasicInputErrorMsg/BasicInputErrorMsg";
 
 type Props = {
   accept?: string;
@@ -67,7 +67,7 @@ const UploadFileButton = (props: Props) => {
     <div className={clsx(styles["file-input-wrapper"], className)}>
       {renderButton()}
       {value && <span className={styles["file-name-title"]}>{value.name}</span>}
-      <BasicInputErrrorMsg showError={showError} errorMessage={errorMessage} />
+      <BasicInputErrorMsg showError={showError} errorMessage={errorMessage} />
     </div>
   );
 };

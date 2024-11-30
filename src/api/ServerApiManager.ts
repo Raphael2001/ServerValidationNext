@@ -1,6 +1,6 @@
 import API_METHODS from "constants/ApiMethods";
 import BaseApiManager from "./BaseApiManager";
-import { serverProps, serverSettings } from "utils/types/api";
+import { ServerProps, ServerSettings } from "utils/types/api";
 
 const ServerApiManager = (function () {
   function addParamsToURL(url: string, payload: any) {
@@ -22,10 +22,10 @@ const ServerApiManager = (function () {
 
   function generateRequest(
     payload: any,
-    settings: serverSettings | undefined,
+    settings: ServerSettings | undefined,
     methodName: string
   ) {
-    const url = BaseApiManager.buildeUrl(methodName, settings?.url);
+    const url = BaseApiManager.buildUrl(methodName, settings?.url);
     const fullUrl = addParamsToURL(url, payload);
     const defaultHeaders = BaseApiManager.getHeaders();
 
@@ -38,7 +38,7 @@ const ServerApiManager = (function () {
 
     return data;
   }
-  function execute(props: serverProps, methodName: string) {
+  function execute(props: ServerProps, methodName: string) {
     const settings = generateRequest(props.payload, props.settings, methodName);
 
     return fetch(settings.url, {

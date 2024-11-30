@@ -2,9 +2,9 @@
 
 import React, { ChangeEventHandler } from "react";
 
-import styles from "./ChexkBoxs.module.scss";
+import styles from "./CheckBoxes.module.scss";
 import CheckBox from "../CheckBox/CheckBox";
-import BasicInputErrrorMsg from "components/Basic/BasicInputErrrorMsg/BasicInputErrrorMsg";
+import BasicInputErrorMsg from "components/Basic/BasicInputErrorMsg/BasicInputErrorMsg";
 
 type checkboxOption = {
   _id: string;
@@ -20,19 +20,10 @@ type Props = {
   placeholder?: string;
   field?: string;
   name: string;
+  bitwiseValueField?: string;
 };
 
-function formatStringToArray(str: string) {
-  // Split the string by comma
-  let items = str.split(",");
-
-  // Map each item to the desired case
-  return items.map((item, index) => {
-    return item;
-  });
-}
-
-function ChexkBoxs(props: Props) {
+function BitwiseCheckbox(props: Props) {
   const {
     options = [],
     name,
@@ -43,15 +34,17 @@ function ChexkBoxs(props: Props) {
     placeholder,
     disabled = false,
     field = "text",
+    bitwiseValueField = "bitwise",
   } = props;
 
-  const valueAsArray = formatStringToArray(value);
+  const valueAsNumber = Number(value);
 
   return (
-    <div className={styles["checkboxs-wrapper"]}>
+    <div className={styles["checkboxes-wrapper"]}>
       {placeholder && <span className={styles["title"]}>{placeholder}</span>}
       <div className={styles["inputs"]}>
         {options.map((option) => {
+          const bitwiseValue = Number(option[bitwiseValueField]);
           return (
             <CheckBox
               key={"option" + option._id}
@@ -60,14 +53,14 @@ function ChexkBoxs(props: Props) {
               label={option[field]}
               onChange={onChange}
               disabled={disabled}
-              value={valueAsArray.includes(option._id)}
+              value={!!(valueAsNumber & bitwiseValue)}
             />
           );
         })}
       </div>
-      <BasicInputErrrorMsg showError={showError} errorMessage={errorMessage} />
+      <BasicInputErrorMsg showError={showError} errorMessage={errorMessage} />
     </div>
   );
 }
 
-export default ChexkBoxs;
+export default BitwiseCheckbox;

@@ -7,18 +7,18 @@ import ColoredCell from "../ColoredCell/ColoredCell";
 import ActionsCell from "../Actions/ActionsCell/ActionsCell";
 import InputCell from "../InputCell/InputCell";
 import CheckBoxCell from "../CheckBoxCell/CheckBoxCell";
-import { inputEvent } from "utils/types/inputs";
+import { InputEvent } from "utils/types/inputs";
 import { TableHeaderItem } from "utils/types/table";
 import { DragHandle } from "components/DnD/Drag/Drag";
-import { generalServerItem } from "utils/types/general";
+import { GeneralServerItem } from "utils/types/general";
 
 type Props = {
   styleRef: Object;
   styles: Object;
-  dataItem: generalServerItem;
+  dataItem: GeneralServerItem;
   header: Object;
-  selectedCheckboxs: Array<string>;
-  onChangeCheckBox: (e: inputEvent) => void;
+  selectedCheckboxes: Array<string>;
+  onChangeCheckBox: (e: InputEvent) => void;
   enableDrag?: boolean;
 };
 
@@ -29,7 +29,7 @@ function TableRow({
   header,
 
   onChangeCheckBox,
-  selectedCheckboxs,
+  selectedCheckboxes,
   enableDrag = false,
 }: Props) {
   return (
@@ -56,7 +56,7 @@ function TableRow({
               name={key}
               data={dataItem}
               onChangeCheckBox={onChangeCheckBox}
-              selectedCheckboxs={selectedCheckboxs}
+              selectedCheckboxes={selectedCheckboxes}
             />
           </div>
         );
@@ -72,9 +72,9 @@ type CellProps = {
   item: TableHeaderItem;
   value: string;
   name: string;
-  data: generalServerItem;
-  onChangeCheckBox: (e: inputEvent) => void;
-  selectedCheckboxs: Array<string>;
+  data: GeneralServerItem;
+  onChangeCheckBox: (e: InputEvent) => void;
+  selectedCheckboxes: Array<string>;
 };
 
 function RenderCell({
@@ -83,7 +83,7 @@ function RenderCell({
   name,
   data,
   onChangeCheckBox,
-  selectedCheckboxs,
+  selectedCheckboxes,
 }: CellProps) {
   const {
     type,
@@ -98,14 +98,14 @@ function RenderCell({
 
   function renderContent() {
     switch (type) {
-      case TABLE_CELL_TYPES.CHECKBOX:
+      case TABLE_CELL_TYPES.CHECKBOXES:
         return (
           <CheckBoxCell
             field={uniqueField}
             name={name}
             data={data}
             onChange={onChangeCheckBox}
-            values={selectedCheckboxs}
+            values={selectedCheckboxes}
           />
         );
       case TABLE_CELL_TYPES.INPUT:

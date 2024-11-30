@@ -3,11 +3,11 @@ import CmsButton from "components/CmsButton/CmsButton";
 import styles from "./GeneralInfoActions.module.scss";
 import useGeneralInfo from "utils/hooks/useGeneralInfo";
 import { copy } from "utils/functions";
-import { generalInfoValue } from "utils/types/init";
+import { GeneralInfoValue } from "utils/types/init";
 
 type actionsProps = {
   name: string;
-  inputValue: generalInfoValue;
+  inputValue: GeneralInfoValue;
   resetValue: () => void;
 };
 

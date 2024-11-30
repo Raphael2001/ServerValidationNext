@@ -9,7 +9,7 @@ import styles from "./TextsPopup.module.scss";
 import FormCreator from "components/FormCreator/FormCreator";
 import { SlidePopupRef } from "utils/types/popup";
 import { useAppSelector } from "utils/hooks/useRedux";
-import { FormDataType, FormInputData } from "utils/types/form";
+import { FormData, FormInputData } from "utils/types/form";
 import FORM_INPUTS_TYPES from "constants/form-inputs-types";
 import TEXT_TAGS from "constants/TextTags";
 import { CmsText } from "utils/types/init";
@@ -27,12 +27,12 @@ function TextsPopup(props: Props) {
   const languages = useAppSelector((store) => store.init?.languages);
   const ref = useRef<SlidePopupRef>();
 
-  const [formData, setFormData] = useState<FormDataType>({ inputs: [] });
+  const [formData, setFormData] = useState<FormData>({ inputs: [] });
 
   const isNew = !dataItem;
 
   useEffect(() => {
-    const form: FormDataType = {
+    const form: FormData = {
       inputs: [
         {
           name: "key",

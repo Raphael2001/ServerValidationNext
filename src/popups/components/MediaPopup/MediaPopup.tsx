@@ -6,7 +6,7 @@ import styles from "./MediaPopup.module.scss";
 import Switch from "components/forms/Switch/Switch";
 import AnimatedInput from "components/forms/AnimatedInput";
 import CmsButton from "components/CmsButton/CmsButton";
-import { inputEvent } from "utils/types/inputs";
+import { InputEvent } from "utils/types/inputs";
 import SlidePopup from "popups/Presets/SlidePopup/SlidePopup";
 import Api from "api/requests";
 import UploadFileButton from "components/forms/UploadFileButton/UploadFileButton";
@@ -23,7 +23,7 @@ export default function MediaPopup() {
 
   const ref = useRef<SlidePopupRef>();
 
-  function onMediaChange(e: inputEvent) {
+  function onMediaChange(e: InputEvent) {
     const fileList = e.target.files;
     if (fileList) {
       for (let i = 0; i < fileList.length; i++) {
@@ -46,7 +46,7 @@ export default function MediaPopup() {
     }
   }
 
-  function onUrlChange(e: inputEvent) {
+  function onUrlChange(e: InputEvent) {
     const { value } = e.target;
     setUrl(value);
     setCurrentMedia(value);
@@ -111,13 +111,13 @@ export default function MediaPopup() {
     }
   }
 
-  function onAltTextChange(event: inputEvent) {
+  function onAltTextChange(event: InputEvent) {
     const { value } = event.target;
 
     setAlt(value);
   }
 
-  function onNameChange(event: inputEvent) {
+  function onNameChange(event: InputEvent) {
     const { value } = event.target;
 
     setName(value);

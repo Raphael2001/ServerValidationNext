@@ -1,17 +1,22 @@
 "use client";
 
-import React, { ComponentType, forwardRef, useEffect, useState } from "react";
+import React, {
+  ComponentType,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 
 import styles from "./FormCreator.module.scss";
 import InputsCreator from "./InputsCreator/InputsCreator";
 import CmsButton from "components/CmsButton/CmsButton";
-import { FormDataType, FormInputData, onChangeValue } from "utils/types/form";
-import { copy } from "utils/functions";
+import { FormData, FormInputData, OnChangeValue } from "utils/types/form";
 import useValidate from "utils/hooks/useValidate";
 import FORM_INPUTS_TYPES from "constants/form-inputs-types";
 
 type Props = {
-  formData: FormDataType;
+  formData: FormData;
   children?: React.ReactNode;
   CustomButton?: ComponentType<any>;
   onSubmit: (payload: Object) => void;
@@ -30,19 +35,23 @@ const FormCreator = forwardRef((props: Props, ref) => {
   function defaultValue(input: FormInputData) {
     switch (input.inputType) {
       case FORM_INPUTS_TYPES.MULTI_SELECT_AUTO_COMPLETE:
+      case FORM_INPUTS_TYPES.CHECKBOXES:
         return [];
+      case FORM_INPUTS_TYPES.CHECKBOX:
+        return false;
       default:
         return "";
     }
   }
 
-  useEffect(() => {
+  const initializeForm = useCallback(() => {
     const formData = {};
+
     if (Array.isArray(inputs)) {
-      for (const key in inputs) {
-        const input = inputs[key];
+      inputs.forEach((input) => {
         let initialValue = defaultValue(input);
-        if (initialData && initialData[input.name]) {
+
+        if (initialData && initialData.hasOwnProperty(input.name)) {
           initialValue = initialData[input.name];
         }
 
@@ -50,15 +59,20 @@ const FormCreator = forwardRef((props: Props, ref) => {
           value: initialValue,
           valid: false,
           errorMessage: "",
-          rules: input.rules,
+          rules: input.rules || [],
         };
-      }
+      });
     }
-    setForm(formData);
-  }, [initialData, inputs]);
 
-  function onChange(name: string, value: onChangeValue) {
-    const newState = copy(form);
+    setForm(formData);
+  }, [inputs, initialData]); // Memoize function with dependencies
+
+  useEffect(() => {
+    initializeForm();
+  }, [initializeForm]); // Include the memoized function in dependencies
+
+  function onChange(name: string, value: OnChangeValue) {
+    const newState = { ...form };
 
     const { valid, msg } = validate(value, form[name].rules);
 
@@ -78,7 +92,7 @@ const FormCreator = forwardRef((props: Props, ref) => {
 
     let formValid = true;
     const payload = {};
-    const newState = copy(form);
+    const newState = { ...form };
 
     for (const key in form) {
       const validationObj = validate(form[key].value, form[key].rules);

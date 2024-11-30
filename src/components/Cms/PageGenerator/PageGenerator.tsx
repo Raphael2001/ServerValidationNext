@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 
 import styles from "./PageGenerator.module.scss";
 import useDeleteItem from "utils/hooks/useDeleteItem";
@@ -25,7 +25,9 @@ type Props = {
   popup?: string;
   overrideUpdatePopup?: string;
   showDeleteAction?: boolean;
-  shoUpdateAction?: boolean;
+  showUpdateAction?: boolean;
+  enableDrag?: boolean;
+  onChangeItems?: (data: Array<Object>) => void;
 };
 
 function PageGenerator(props: Props) {
@@ -39,7 +41,9 @@ function PageGenerator(props: Props) {
     deleteApi = () => {},
     overrideUpdatePopup,
     showDeleteAction = true,
-    shoUpdateAction = true,
+    showUpdateAction = true,
+    enableDrag,
+    onChangeItems,
   } = props;
   const openPopup = usePopup();
 
@@ -95,14 +99,14 @@ function PageGenerator(props: Props) {
 
   const getActions = useCallback(() => {
     const actions: Array<TableAction> = [];
-    if (shoUpdateAction) {
+    if (showUpdateAction) {
       actions.push(updateAction);
     }
     if (showDeleteAction) {
       actions.push(deleteAction);
     }
     return actions;
-  }, [showDeleteAction, showDeleteAction]);
+  }, [showDeleteAction, showUpdateAction]);
 
   const actions = getActions();
 
@@ -123,7 +127,12 @@ function PageGenerator(props: Props) {
         <CmsButton onClick={createNew} text="הוסף חדש" />
       </div>
 
-      <TableCreator data={dataArray} header={tableHeader} />
+      <TableCreator
+        data={dataArray}
+        header={tableHeader}
+        enableDrag={enableDrag}
+        onChangeItems={onChangeItems}
+      />
     </div>
   );
 }

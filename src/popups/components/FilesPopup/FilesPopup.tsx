@@ -7,7 +7,7 @@ import React, { useRef, useState } from "react";
 import AnimatedInput from "components/forms/AnimatedInput";
 import SlidePopup from "popups/Presets/SlidePopup/SlidePopup";
 import CmsButton from "components/CmsButton/CmsButton";
-import { inputEvent } from "utils/types/inputs";
+import { InputEvent } from "utils/types/inputs";
 import UploadFileButton from "components/forms/UploadFileButton/UploadFileButton";
 import { SlidePopupRef } from "utils/types/popup";
 import Api from "api/requests";
@@ -19,7 +19,7 @@ function FilesPopup() {
 
   const ref = useRef<SlidePopupRef>();
 
-  function onMediaChange(e: inputEvent) {
+  function onMediaChange(e: InputEvent) {
     const fileList = e.target.files;
     if (fileList) {
       for (let i = 0; i < fileList.length; i++) {
@@ -30,7 +30,7 @@ function FilesPopup() {
     }
   }
 
-  function onNameChange(event: inputEvent) {
+  function onNameChange(event: InputEvent) {
     const { value } = event.target;
 
     setName(value);

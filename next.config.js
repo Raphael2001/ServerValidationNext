@@ -8,7 +8,7 @@ const { version } = require("./package.json");
 
 const nextConfig = {
   reactStrictMode: false,
-  publicRuntimeConfig: {
+  env: {
     version,
   },
   webpack: (config) => {

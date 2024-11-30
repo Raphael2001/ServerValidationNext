@@ -1,13 +1,13 @@
 import React from "react";
 
-import styles from "./BasicInputErrrorMsg.module.scss";
+import styles from "./BasicInputErrorMsg.module.scss";
 
 type Props = {
   showError: boolean;
   errorMessage: string;
 };
 
-function BasicInputErrrorMsg(props: Props) {
+function BasicInputErrorMsg(props: Props) {
   const { showError, errorMessage = "" } = props;
 
   return showError ? (
@@ -15,4 +15,4 @@ function BasicInputErrrorMsg(props: Props) {
   ) : null;
 }
 
-export default BasicInputErrrorMsg;
+export default BasicInputErrorMsg;

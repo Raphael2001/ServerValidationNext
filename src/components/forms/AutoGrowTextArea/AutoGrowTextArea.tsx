@@ -4,7 +4,7 @@ import React, { ChangeEventHandler, useEffect, useRef } from "react";
 
 import styles from "./AutoGrowTextArea.module.scss";
 import BasicTextArea from "components/Basic/BasicTextArea/BasicTextArea";
-import BasicInputErrrorMsg from "components/Basic/BasicInputErrrorMsg/BasicInputErrrorMsg";
+import BasicInputErrorMsg from "components/Basic/BasicInputErrorMsg/BasicInputErrorMsg";
 import useInputAccessibility from "utils/hooks/useInputAccessibility";
 
 type Props = {
@@ -77,7 +77,7 @@ function AutoGrowTextArea(props: Props) {
         {...accessibilityProps}
       />
 
-      <BasicInputErrrorMsg showError={showError} errorMessage={errorMessage} />
+      <BasicInputErrorMsg showError={showError} errorMessage={errorMessage} />
     </div>
   );
 }

@@ -10,10 +10,11 @@ function AppWrapper({
   color = "site",
   data = undefined,
   className = "",
+  apiValidationData,
 }) {
   return (
     <body className={clsx(color, className)}>
-      <StoreProvider data={data}>
+      <StoreProvider data={data} apiValidationData={apiValidationData}>
         {children}
 
         <Notifications />

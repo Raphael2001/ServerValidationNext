@@ -1,5 +1,6 @@
 import { combineSlices } from "@reduxjs/toolkit";
 import { apiQueueSlice } from "redux-store/features/apiQueueSlice";
+import { apiValidationSlice } from "redux-store/features/apiValidationSlice";
 import { burgerSlice } from "redux-store/features/burgerStateSlice";
 import { deviceSlice } from "redux-store/features/deviceSlice";
 import { initAppSlice } from "redux-store/features/initAppSlice";
@@ -20,7 +21,8 @@ const rootReducer = combineSlices(
   popupsSlice,
   tokensSlice,
   userDataSlice,
-  initAppSlice
+  initAppSlice,
+  apiValidationSlice
 );
 
 export default rootReducer;

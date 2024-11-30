@@ -3,7 +3,7 @@ import React, { ChangeEventHandler, useState } from "react";
 import styles from "./index.module.scss";
 import BasicInput from "components/Basic/BasicInput/BasicInput";
 
-import BasicInputErrrorMsg from "components/Basic/BasicInputErrrorMsg/BasicInputErrrorMsg";
+import BasicInputErrorMsg from "components/Basic/BasicInputErrorMsg/BasicInputErrorMsg";
 import AnimatedPlaceholder from "components/Basic/AnimatedPlaceholder/AnimatedPlaceholder";
 import useInputAccessibility from "utils/hooks/useInputAccessibility";
 import { clsx, generateUniqueId } from "utils/functions";
@@ -89,7 +89,7 @@ function AnimatedInput(props: Props) {
         isFocus={isFocus}
       />
 
-      <BasicInputErrrorMsg showError={showError} errorMessage={errorMessage} />
+      <BasicInputErrorMsg showError={showError} errorMessage={errorMessage} />
     </div>
   );
 }

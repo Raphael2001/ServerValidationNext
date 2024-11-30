@@ -1,17 +1,21 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { copy } from "utils/functions";
-import { CmsText, GeneralInfo, init, language } from "utils/types/init";
+import { CmsText, GeneralInfo, Init, Language } from "utils/types/init";
 
-const initialState: init = {
+const initialState: Init = {
   texts: [],
   media: {},
   languages: [],
   generalInfo: [],
   links: [],
+
   iamRoles: [],
+
   modules: [],
+
   files: {},
   users: [],
+  syncOptions: [],
   projects: [],
   sites: [],
 };
@@ -21,11 +25,11 @@ export const initSlice = createSlice({
   initialState: initialState,
   reducers: {
     setInit: (state, action) => action.payload,
-    updateInit: (state: init, action) => {
+    updateInit: (state: Init, action) => {
       return { ...state, ...action.payload };
     },
 
-    upsertTextAction: (state: init, action: PayloadAction<CmsText>) => {
+    upsertTextAction: (state: Init, action: PayloadAction<CmsText>) => {
       const { key } = action.payload;
       const indexOfText = state.texts.findIndex((l: CmsText) => l.key === key);
 
@@ -36,7 +40,7 @@ export const initSlice = createSlice({
       }
     },
 
-    deleteTextAction: (state: init, action) => {
+    deleteTextAction: (state: Init, action) => {
       const { key } = action.payload;
 
       const field = copy(state.texts);
@@ -50,24 +54,24 @@ export const initSlice = createSlice({
       state.texts = field;
     },
 
-    addMediaAction: (state: init, action) => {
+    addMediaAction: (state: Init, action) => {
       const mediaId = action.payload._id;
       state.media = { ...state.media, [mediaId]: action.payload };
     },
 
-    removeMediaAction: (state: init, action) => {
+    removeMediaAction: (state: Init, action) => {
       const mediaId = action.payload;
       const media = { ...state.media };
       delete media[mediaId];
       state.media = media;
     },
 
-    setGeneralInfo: (state: init, action: PayloadAction<GeneralInfo>) => {
+    setGeneralInfo: (state: Init, action: PayloadAction<GeneralInfo>) => {
       const { name } = action.payload;
 
       state.generalInfo[name] = action.payload;
     },
-    deleteGeneralInfoAction: (state: init, action: PayloadAction<string>) => {
+    deleteGeneralInfoAction: (state: Init, action: PayloadAction<string>) => {
       const name = action.payload;
 
       delete state.generalInfo[name];
@@ -93,7 +97,7 @@ export const initSlice = createSlice({
       return state;
     },
 
-    deleteKeyById: (state: init, action) => {
+    deleteKeyById: (state: Init, action) => {
       const { name, value } = action.payload;
       const { _id } = value;
       const field = copy(state[name]);
@@ -107,10 +111,10 @@ export const initSlice = createSlice({
       state[name] = field;
     },
 
-    upsertLang: (state: init, action: PayloadAction<language>) => {
+    upsertLang: (state: Init, action: PayloadAction<Language>) => {
       const { _id } = action.payload;
       const indexOfLang = state.languages.findIndex(
-        (l: language) => l._id === _id
+        (l: Language) => l._id === _id
       );
 
       if (indexOfLang > -1) {
@@ -120,12 +124,12 @@ export const initSlice = createSlice({
       }
     },
 
-    addFileAction: (state: init, action) => {
+    addFileAction: (state: Init, action) => {
       const fileId = action.payload._id;
       state.files = { ...state.files, [fileId]: action.payload };
     },
 
-    removeFileAction: (state: init, action) => {
+    removeFileAction: (state: Init, action) => {
       const fileId = action.payload;
       const files = { ...state.files };
       delete files[fileId];
@@ -143,6 +147,7 @@ export const {
   removeMediaAction,
   setGeneralInfo,
   setInit,
+
   updateInit,
   updateKey,
   upsertLang,

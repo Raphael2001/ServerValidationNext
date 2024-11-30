@@ -35,12 +35,12 @@ const Api = (function () {
         token = data.access_token;
       }
 
-      const refershProps = {
+      const refreshProps = {
         onSuccess,
         payload: {},
       };
 
-      await refreshToken(refershProps);
+      await refreshToken(refreshProps);
     }
 
     return { Authorization: `Bearer ${token}` };
@@ -276,6 +276,19 @@ const Api = (function () {
     return ApiManager.addCall(props, API_METHODS.DELETE, "file", onSuccess);
   }
 
+  async function syncDB(props: ApiProps = {}) {
+    function onSuccess(res: ApiResponse) {
+      typeof props.onSuccess === "function" && props.onSuccess(res.body);
+    }
+    props.headers = await accessTokenHeaders();
+    return ApiManager.addCall(
+      props,
+      API_METHODS.POST,
+      "syncDataBase",
+      onSuccess
+    );
+  }
+
   async function addProject(props: ApiProps = {}) {
     function onSuccess(res: ApiResponse) {
       Store.dispatch(addNewKey({ value: res.body, name: "projects" }));
@@ -345,7 +358,6 @@ const Api = (function () {
     removeMedia,
     upsertLink,
     removeLink,
-
     createRole,
     updateRole,
     createUser,
@@ -354,6 +366,8 @@ const Api = (function () {
 
     addFile,
     removeFile,
+
+    syncDB,
     addProject,
     updateProject,
     deleteProject,

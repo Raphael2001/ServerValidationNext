@@ -4,11 +4,11 @@ import SERVER_RESPONSES from "constants/ServerResponses";
 import axios from "axios";
 import {
   ApiCallData,
-  apiConfig,
+  ApiConfig,
   ApiProps,
-  clientSettings,
-  onFailureFunction,
-  onSuccessFunction,
+  ClientSettings,
+  OnFailureFunction,
+  OnSuccessFunction,
 } from "utils/types/api";
 import { generateUniqueId } from "utils/functions";
 import ApiQueueService from "./ApiQueueService";
@@ -22,33 +22,50 @@ const ApiManager = (function () {
     headers = {},
     method = API_METHODS.POST,
     methodName: string,
-    config?: apiConfig
+    config?: ApiConfig
   ) {
-    const url = BaseApiManager.buildeUrl(methodName, config?.url);
-    const defaultHeaders = BaseApiManager.getHeaders();
+    const url = BaseApiManager.buildUrl(methodName, config?.url);
+    const defaultHeaders = BaseApiManager.getHeaders(config?.isFormData);
     const allHeaders = { ...headers, ...defaultHeaders };
 
-    const settings: clientSettings = {
+    const settings: ClientSettings = {
       method,
       url,
       headers: allHeaders,
       withCredentials: true,
     };
+
+    const payloadData = getPayload(payload, config);
+
     if (method !== API_METHODS.GET) {
-      settings.data = payload;
+      settings.data = payloadData;
     } else {
-      settings.params = payload;
+      settings.params = payloadData;
     }
 
     return settings;
+  }
+
+  function getPayload(payload: any, config?: ApiConfig) {
+    if (config?.isFormData) {
+      const formDataPayload = new FormData();
+
+      for (const key in payload) {
+        formDataPayload.append(key, payload[key]);
+      }
+
+      return formDataPayload;
+    } else {
+      return payload;
+    }
   }
 
   function addCall(
     props: ApiProps,
     methodType: string,
     methodName: string,
-    onSuccess?: onSuccessFunction,
-    onFailure?: onFailureFunction
+    onSuccess?: OnSuccessFunction,
+    onFailure?: OnFailureFunction
   ) {
     const settings = generateRequest(
       props.payload,

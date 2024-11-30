@@ -1,12 +1,14 @@
 import AppWrapper from "components/AppWrapper/AppWrapper";
 
-import ApiServer from "api/requests/server";
 import { NextIntlClientProvider } from "next-intl";
-import { unstable_setRequestLocale } from "next-intl/server";
-import { LOACLES } from "constants/GlobalParams";
+import { ValidationResponseType } from "utils/types/validation";
+import ISR from "utils/ISR";
+import { routing } from "i18n/routing";
+import { notFound } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
 
 export function generateStaticParams() {
-  return LOACLES.map((locale) => ({ locale }));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export default async function LocaleLayout({
@@ -16,10 +18,25 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  unstable_setRequestLocale(locale);
+  // Ensure that the incoming `locale` is valid
+  if (!routing.locales.includes(locale as any)) {
+    notFound();
+  }
+
+  setRequestLocale(locale);
+
+  const apiValidationData: ValidationResponseType =
+    await ISR.serverValidation();
+
+  const body = await ISR.init(locale);
 
   return (
-    <AppWrapper color="site" className="rtl">
+    <AppWrapper
+      color="site"
+      data={body}
+      className="rtl"
+      apiValidationData={apiValidationData}
+    >
       <NextIntlClientProvider>{children}</NextIntlClientProvider>
     </AppWrapper>
   );

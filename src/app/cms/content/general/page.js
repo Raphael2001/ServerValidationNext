@@ -14,6 +14,12 @@ import usePermission from "utils/hooks/usePermission";
 import { useAppSelector } from "utils/hooks/useRedux";
 export default function GeneralPage() {
   const generalInfo = useAppSelector((store) => store.init?.generalInfo);
+
+  const syncOptions = useAppSelector((store) => store.init.syncOptions);
+
+  const hasSyncOptions =
+    syncOptions && Array.isArray(syncOptions) && syncOptions.length > 0;
+
   const openPopup = usePopup();
   usePermission(CMS_MODULES.GENERAL_INFO);
 
@@ -31,6 +37,16 @@ export default function GeneralPage() {
         Object.values(generalInfo).map((param) => {
           return <GeneralRow key={param._id} name={param.name} />;
         })}
+
+      {hasSyncOptions && (
+        <div className={styles["sync-db-btn"]}>
+          <CmsButton
+            text={"סינכרון סביבת דב"}
+            className="create"
+            onClick={() => openPopup(POPUP_TYPES.SYNC_DB)}
+          />
+        </div>
+      )}
     </div>
   );
 }

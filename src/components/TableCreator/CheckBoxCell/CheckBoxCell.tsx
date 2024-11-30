@@ -1,11 +1,11 @@
 import CheckBox from "components/forms/CheckBox/CheckBox";
-import { inputEvent } from "utils/types/inputs";
+import { InputEvent } from "utils/types/inputs";
 
 type Props = {
   field: string;
   name: string;
   data: any;
-  onChange: (e: inputEvent) => void;
+  onChange: (e: InputEvent) => void;
   values: Array<string>;
 };
 

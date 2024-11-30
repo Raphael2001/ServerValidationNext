@@ -27,3 +27,10 @@ export type Media = {
 export type MediaObjects = {
   [key: string]: Media;
 };
+
+export const emptyMedia: Media = {
+  name: "",
+  _id: "",
+  alt: "",
+  src: { mime: "", name: "", type: "", url: "" },
+};

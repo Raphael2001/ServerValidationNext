@@ -5,8 +5,8 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./AutoComplete.module.scss";
 import { useOutsideClick } from "utils/hooks/useOutsideClick";
 import TextInput from "../TextInput/TextInput";
-import { inputEvent } from "utils/types/inputs";
-import BasicInputErrrorMsg from "components/Basic/BasicInputErrrorMsg/BasicInputErrrorMsg";
+import { InputEvent } from "utils/types/inputs";
+import BasicInputErrorMsg from "components/Basic/BasicInputErrorMsg/BasicInputErrorMsg";
 import OptionsList from "components/Basic/OptionsList/OptionsList";
 import useHighlightedItem from "utils/hooks/useHighlightedItem";
 import { clsx } from "utils/functions";
@@ -67,7 +67,7 @@ function AutoComplete(props: Props) {
   const wrapperRef = useRef(null);
   useOutsideClick(wrapperRef, closeList);
 
-  function onChangeInput(e: inputEvent) {
+  function onChangeInput(e: InputEvent) {
     const { value } = e.target;
     onChange(name, null);
 
@@ -108,7 +108,7 @@ function AutoComplete(props: Props) {
         highlightedItem={highlightedItem}
       />
 
-      <BasicInputErrrorMsg showError={showError} errorMessage={errorMessage} />
+      <BasicInputErrorMsg showError={showError} errorMessage={errorMessage} />
     </div>
   );
 }

@@ -4,16 +4,16 @@ import React, { useRef, useState } from "react";
 
 import styles from "./InputCell.module.scss";
 import TextInput from "components/forms/TextInput/TextInput";
-import { inputEvent } from "utils/types/inputs";
+import { InputEvent } from "utils/types/inputs";
 
 import ChecMark from "/public/assets/icons/check-mark-black.svg";
 import XMark from "/public/assets/icons/x-black.svg";
 import { useOutsideClick } from "utils/hooks/useOutsideClick";
-import { cellInput } from "utils/types/table";
+import { CellInput } from "utils/types/table";
 
 type Props = {
   name: string;
-  onChange: (e: cellInput) => void;
+  onChange: (e: CellInput) => void;
   field: string;
   data: any;
 };
@@ -36,7 +36,7 @@ function InputCell({ name, onChange, data, field }: Props) {
     ref.current?.focus();
   }
 
-  function onChangeHandler(e: inputEvent) {
+  function onChangeHandler(e: InputEvent) {
     const { target } = e;
     const { value } = target;
     setValue(value);

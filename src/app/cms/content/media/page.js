@@ -73,7 +73,7 @@ function MediaBox(props) {
   const onRemoveClick = () => {
     const props = {
       payload: {
-        id,
+        _id: id,
       },
     };
     Api.removeMedia(props);

@@ -12,10 +12,10 @@ const POPUP_TYPES = {
   TRASH: "TRASH",
   UPDATE_USER: "UPDATE_USER",
 
-  PRODUCT: "PRODUCT",
   FILES: "FILES",
-  PROJECT: "PROJECT",
-  SITE: "SITE",
+  SYNC_DB: "SYNC_DB",
+  PROJECT: "Project",
+  SITES: "Sites",
 };
 
 export default POPUP_TYPES;

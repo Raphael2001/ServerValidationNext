@@ -5,15 +5,15 @@ import React, { useRef, useState } from "react";
 import styles from "./MultiSelectAutoComplete.module.scss";
 import { useOutsideClick } from "utils/hooks/useOutsideClick";
 import TextInput from "../TextInput/TextInput";
-import { inputEvent } from "utils/types/inputs";
-import BasicInputErrrorMsg from "components/Basic/BasicInputErrrorMsg/BasicInputErrrorMsg";
+import { InputEvent } from "utils/types/inputs";
+import BasicInputErrorMsg from "components/Basic/BasicInputErrorMsg/BasicInputErrorMsg";
 import OptionsList from "components/Basic/OptionsList/OptionsList";
 import useHighlightedItem from "utils/hooks/useHighlightedItem";
-import { generalServerItem } from "utils/types/general";
+import { GeneralServerItem } from "utils/types/general";
 import { clsx } from "utils/functions";
 
 type Props = {
-  options: Array<generalServerItem>;
+  options: Array<GeneralServerItem>;
   showError?: boolean;
   errorMessage?: string;
   id?: string;
@@ -58,7 +58,7 @@ function MultiSelectAutoComplete(props: Props) {
   const wrapperRef = useRef(null);
   useOutsideClick(wrapperRef, closeList);
 
-  function onChangeInput(e: inputEvent) {
+  function onChangeInput(e: InputEvent) {
     const { value } = e.target;
 
     setInput(value);
@@ -96,7 +96,7 @@ function MultiSelectAutoComplete(props: Props) {
         highlightedItem={highlightedItem}
       />
 
-      <BasicInputErrrorMsg showError={showError} errorMessage={errorMessage} />
+      <BasicInputErrorMsg showError={showError} errorMessage={errorMessage} />
     </div>
   );
 }

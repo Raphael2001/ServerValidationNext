@@ -5,7 +5,7 @@ import React, {
 } from "react";
 
 import styles from "./BasicInput.module.scss";
-import { onKeyDownInput } from "utils/types/inputs";
+import { OnKeyDownInput } from "utils/types/inputs";
 import { InputAccessibility } from "utils/types/form";
 
 type Props = {
@@ -20,7 +20,7 @@ type Props = {
   onBlur?: () => void;
   type?: HTMLInputTypeAttribute;
   className?: string;
-  onKeyDown?: (e: onKeyDownInput) => void;
+  onKeyDown?: (e: OnKeyDownInput) => void;
 };
 
 const BasicInput = forwardRef<HTMLInputElement, Props & InputAccessibility>(
@@ -45,7 +45,7 @@ const BasicInput = forwardRef<HTMLInputElement, Props & InputAccessibility>(
 
     const exceptThisSymbols = ["e", "E", "+", "-", "."];
 
-    function onKeyDownHandler(e: onKeyDownInput) {
+    function onKeyDownHandler(e: OnKeyDownInput) {
       if (type === "number" && exceptThisSymbols.includes(e.key)) {
         e.preventDefault();
       }

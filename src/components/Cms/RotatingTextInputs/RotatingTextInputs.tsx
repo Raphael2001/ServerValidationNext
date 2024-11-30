@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import styles from "./RotatingTextInputs.module.scss";
 import TextInput from "components/forms/TextInput/TextInput";
 
-import { inputEvent, optionColorType } from "utils/types/inputs";
+import { InputEvent, OptionColor } from "utils/types/inputs";
 import CmsButton from "components/CmsButton/CmsButton";
 import TableCreator from "components/TableCreator/TableCreator";
 import TABLE_CELL_TYPES from "constants/TableCellType";
@@ -20,16 +20,16 @@ import {
 import Select from "components/forms/Select/Select";
 import COLOR_OPTIONS from "constants/ColorOptions";
 import useGeneralInfo from "utils/hooks/useGeneralInfo";
-import { generalInfoValue } from "utils/types/init";
+import { GeneralInfoValue } from "utils/types/init";
 
 type Props = {
   name: string;
-  currentValue: generalInfoValue;
+  currentValue: GeneralInfoValue;
   onChange: (text: string, options: Array<RotatingTextItemOption>) => void;
 };
 
 function isRotatingTextItem(
-  value: generalInfoValue
+  value: GeneralInfoValue
 ): value is RotatingTextItem {
   return (
     typeof value === "object" &&
@@ -55,20 +55,20 @@ function RotatingTextInputs({ name, onChange, currentValue }: Props) {
     },
   });
 
-  function onChangeInput(e: inputEvent) {
+  function onChangeInput(e: InputEvent) {
     const { value } = e.target;
 
     onChange(value, options);
   }
 
-  function onChangeInputOption(e: inputEvent) {
+  function onChangeInputOption(e: InputEvent) {
     const { value } = e.target;
     const newState = { ...newOption };
     newState.text.value = value;
     setNewOption(newState);
   }
 
-  function onChangeSelect(name: string, item: optionColorType) {
+  function onChangeSelect(name: string, item: OptionColor) {
     const newState = { ...newOption };
     newState.color.value = item._id;
     setNewOption(newState);
