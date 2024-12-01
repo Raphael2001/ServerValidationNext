@@ -43,7 +43,7 @@ function SitePopup(props: Props) {
 
   function onSubmit(payload, onSuccess) {
     if (dataItem?._id) {
-      payload["id"] = dataItem._id;
+      payload["_id"] = dataItem._id;
       return Api.updateSite({ payload, onSuccess });
     }
 

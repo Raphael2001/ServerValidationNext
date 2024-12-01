@@ -72,7 +72,7 @@ function PageGenerator(props: Props) {
   }
 
   function onDelete(item, onSuccess) {
-    const payload = { id: item._id };
+    const payload = { _id: item._id };
     deleteApi({ payload, onSuccess });
   }
 
