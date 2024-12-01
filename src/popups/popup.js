@@ -24,7 +24,7 @@ import { useAppSelector } from "utils/hooks/useRedux";
 import FilesPopup from "./components/FilesPopup/FilesPopup";
 import ProjectPopup from "./components/ProjectPopup/ProjectPopup";
 import MailTokenPopup from "./components/MailTokenPopup/MailTokenPopup";
-import SitePopup from "./components/SitePopup/SitePopup";
+import SitePopup from "./components/SitesPopup/SitesPopup";
 
 export default function Popups({ className = "" }) {
   const popupsArray = useAppSelector((store) => store.popupsArray);
