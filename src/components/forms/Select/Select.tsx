@@ -4,7 +4,7 @@ import React, { KeyboardEvent, useRef, useState } from "react";
 
 import styles from "./Select.module.scss";
 import OptionsList from "components/Basic/OptionsList/OptionsList";
-import BasicInputErrrorMsg from "components/Basic/BasicInputErrrorMsg/BasicInputErrrorMsg";
+import BasicInputErrorMsg from "components/Basic/BasicInputErrorMsg/BasicInputErrorMsg";
 import { useOutsideClick } from "utils/hooks/useOutsideClick";
 import { GeneralOptionItem } from "utils/types/inputs";
 import useHighlightedItem from "utils/hooks/useHighlightedItem";
@@ -90,7 +90,7 @@ function Select(props: Props) {
         highlightedItem={highlightedItem}
       />
 
-      <BasicInputErrrorMsg showError={showError} errorMessage={errorMessage} />
+      <BasicInputErrorMsg showError={showError} errorMessage={errorMessage} />
     </div>
   );
 }

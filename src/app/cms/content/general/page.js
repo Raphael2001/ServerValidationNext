@@ -14,6 +14,7 @@ import usePermission from "utils/hooks/usePermission";
 import { useAppSelector } from "utils/hooks/useRedux";
 export default function GeneralPage() {
   const generalInfo = useAppSelector((store) => store.init?.generalInfo);
+
   const openPopup = usePopup();
   usePermission(CMS_MODULES.GENERAL_INFO);
 

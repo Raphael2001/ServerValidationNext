@@ -4,7 +4,7 @@ import React, { ChangeEventHandler } from "react";
 
 import styles from "./RadioButtons.module.scss";
 import RadioButton from "components/Basic/RadioButton/RadioButton";
-import BasicInputErrrorMsg from "components/Basic/BasicInputErrrorMsg/BasicInputErrrorMsg";
+import BasicInputErrorMsg from "components/Basic/BasicInputErrorMsg/BasicInputErrorMsg";
 
 type radioOption = {
   _id: string;
@@ -53,7 +53,7 @@ function RadioButtons(props: Props) {
           );
         })}
       </div>
-      <BasicInputErrrorMsg showError={showError} errorMessage={errorMessage} />
+      <BasicInputErrorMsg showError={showError} errorMessage={errorMessage} />
     </div>
   );
 }

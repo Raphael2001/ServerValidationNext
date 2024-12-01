@@ -1,42 +1,36 @@
 import TEXT_TAGS from "constants/TextTags";
-import { LinkType } from "./links";
+import { Link } from "./links";
 import { RotatingTextItem } from "./rotatingText";
-import {
-  CmsIngredient,
-  CmsIngredientMenu,
-  CmsItem,
-  CmsItemsMenu,
-} from "./menus";
+
 import { MediaObjects } from "./media";
 import { UserType } from "./user";
-import { ProjectType } from "./project";
-import { Site } from "./site";
 
-export type init = {
+import { Site } from "./site";
+import { Project } from "./project";
+import { MailsTokens } from "./mailsTokens";
+
+export type Init = {
   texts: Array<CmsText>;
   media: MediaObjects;
-  languages: Array<language>;
+  languages: Array<Language>;
   generalInfo: Array<GeneralInfo>;
-  links: Array<LinkType>;
-  metaTags: Array<metaTags>;
+  links: Array<Link>;
   iamRoles: Array<IAMRoleType>;
-  itemsMenu: Array<CmsItemsMenu>;
-  items: Array<CmsItem>;
-  itemIngredients: Array<CmsIngredient>;
-  ingredientsMenus: Array<CmsIngredientMenu>;
   modules: Array<ModuleType>;
   files: MediaObjects;
   users: Array<UserType>;
-  projects: Array<ProjectType>;
+  projects: Array<Project>;
   sites: Array<Site>;
+  syncOptions: Array<SyncOption>;
+  tokens: Array<MailsTokens>;
 };
 
-export type generalInfoValue =
-  | Array<generalInfoItem>
+export type GeneralInfoValue =
+  | Array<GeneralInfoItem>
   | RotatingTextItem
-  | generalInfoItem;
+  | GeneralInfoItem;
 
-export type generalInfoItem = {
+export type GeneralInfoItem = {
   _id: string;
   data: string;
 };
@@ -45,26 +39,13 @@ export type GeneralInfo = {
   cmsTitle?: string;
   inputType: string;
   name: string;
-  value: generalInfoValue;
+  value: GeneralInfoValue;
   _id?: string;
 };
 
-export type language = {
+export type Language = {
   _id: string;
   lang: string;
-};
-
-export type metaTags = {
-  _id: string;
-  route: string;
-  langId: string;
-  fields: Array<metaTag>;
-};
-
-export type metaTag = {
-  metaTagId: string;
-  type: string;
-  value: string;
 };
 
 export type CmsText = {
@@ -79,13 +60,6 @@ type TextValue = {
 
 export type TextTagsKeys = keyof typeof TEXT_TAGS;
 
-export type moduleType = {
-  bitwise: number;
-  _id: string;
-  title: string;
-  route: string;
-};
-
 export type IAMRoleType = {
   _id: string;
   title: string;
@@ -97,4 +71,10 @@ export type ModuleType = {
   _id: string;
   title: string;
   route: string;
+  show?: boolean;
+};
+
+export type SyncOption = {
+  id: string;
+  title: string;
 };

@@ -2,14 +2,14 @@
 import React, { useMemo, useState } from "react";
 
 import styles from "./TableCreator.module.scss";
-import { inputEvent } from "utils/types/inputs";
+import { InputEvent } from "utils/types/inputs";
 import { useAppSelector } from "utils/hooks/useRedux";
 
 import { TableHeader } from "utils/types/table";
 import { clsx } from "utils/functions";
 import TableRow from "./TableRow/TableRow";
 import { DropWrapper } from "components/DnD/Drop/Drop";
-import { DragableItem } from "components/DnD/Drag/Drag";
+import { DraggableItem } from "components/DnD/Drag/Drag";
 import { arrayMove } from "@dnd-kit/sortable";
 
 type Props = {
@@ -27,19 +27,19 @@ function TableCreator({
   enableDrag = false,
   onChangeItems = () => {},
 }: Props) {
-  const columWidth = 100 / Object.values(header).length;
+  const columnWidth = 100 / Object.values(header).length;
 
   const deviceState = useAppSelector((store) => store.deviceState);
-  const [selectedCheckboxs, setSelectedCheckbox] = useState<string[]>([]);
+  const [selectedCheckboxes, setSelectedCheckbox] = useState<string[]>([]);
 
   const styleRef = useMemo(() => {
     if (deviceState.isDesktop) {
-      return { width: `${columWidth || 20}%` };
+      return { width: `${columnWidth || 20}%` };
     }
     return {};
-  }, [deviceState, columWidth]);
+  }, [deviceState, columnWidth]);
 
-  function onChangeCheckBox(e: inputEvent) {
+  function onChangeCheckBox(e: InputEvent) {
     const { target } = e;
     const { id, name } = target;
 
@@ -51,12 +51,12 @@ function TableCreator({
       values: [""],
     };
 
-    if (selectedCheckboxs.includes(id)) {
-      const newValues = selectedCheckboxs.filter((item) => item !== id);
+    if (selectedCheckboxes.includes(id)) {
+      const newValues = selectedCheckboxes.filter((item) => item !== id);
       setSelectedCheckbox(newValues);
       value.values = newValues;
     } else {
-      const newValues = [...selectedCheckboxs, id];
+      const newValues = [...selectedCheckboxes, id];
       setSelectedCheckbox(newValues);
       value.values = newValues;
     }
@@ -66,17 +66,17 @@ function TableCreator({
 
   function renderRowItem({ dataItem }) {
     return (
-      <DragableItem id={dataItem._id} key={dataItem._id}>
+      <DraggableItem id={dataItem._id} key={dataItem._id}>
         <TableRow
           styleRef={styleRef}
           styles={styles}
           dataItem={dataItem}
           header={header}
-          selectedCheckboxs={selectedCheckboxs}
+          selectedCheckboxes={selectedCheckboxes}
           onChangeCheckBox={onChangeCheckBox}
           enableDrag={enableDrag}
         />
-      </DragableItem>
+      </DraggableItem>
     );
   }
 

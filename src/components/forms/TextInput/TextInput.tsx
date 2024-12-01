@@ -1,15 +1,15 @@
 import React, { HTMLInputTypeAttribute, forwardRef } from "react";
 
 import styles from "./TextInput.module.scss";
-import { inputEvent, onKeyDownInput } from "utils/types/inputs";
+import { InputEvent, OnKeyDownInput } from "utils/types/inputs";
 import BasicInput from "components/Basic/BasicInput/BasicInput";
-import BasicInputErrrorMsg from "components/Basic/BasicInputErrrorMsg/BasicInputErrrorMsg";
+import BasicInputErrorMsg from "components/Basic/BasicInputErrorMsg/BasicInputErrorMsg";
 import useInputAccessibility from "utils/hooks/useInputAccessibility";
 import { clsx, generateUniqueId } from "utils/functions";
 
 type Props = {
   value: string | number;
-  onChange: (e: inputEvent) => void;
+  onChange: (e: InputEvent) => void;
   id?: string;
   name?: string;
   className?: string;
@@ -21,7 +21,7 @@ type Props = {
   onFocus?: () => void;
   onBlur?: () => void;
   type?: HTMLInputTypeAttribute;
-  onKeyDown?: (e: onKeyDownInput) => void;
+  onKeyDown?: (e: OnKeyDownInput) => void;
   ariaLabel?: string;
   required?: boolean;
 };
@@ -73,7 +73,7 @@ const TextInput = forwardRef<HTMLInputElement, Props>((props, ref) => {
         onKeyDown={onKeyDown}
         {...accessibilityProps}
       />
-      <BasicInputErrrorMsg showError={showError} errorMessage={errorMessage} />
+      <BasicInputErrorMsg showError={showError} errorMessage={errorMessage} />
     </div>
   );
 });

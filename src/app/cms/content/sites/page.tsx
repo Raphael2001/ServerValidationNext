@@ -32,7 +32,7 @@ function SitesPage(props) {
       deleteTitle="למחוק את האתר הזה?"
       header={header}
       module={CMS_MODULES.SITES}
-      popup={POPUP_TYPES.SITE}
+      popup={POPUP_TYPES.SITES}
     />
   );
 }

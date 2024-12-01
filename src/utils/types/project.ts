@@ -1,4 +1,4 @@
-export type ProjectType = {
+export type Project = {
   _id: string;
   name: string;
   url: string;

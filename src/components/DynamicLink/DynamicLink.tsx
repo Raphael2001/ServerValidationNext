@@ -1,10 +1,10 @@
 import LINKS_TYPES from "constants/LinksTypes";
 import Link from "next/link";
 import React from "react";
-import { LinkTypeInit } from "utils/types/links";
+import { LinkInit } from "utils/types/links";
 
 type Props = {
-  linkItem: LinkTypeInit;
+  linkItem: LinkInit;
   className?: string;
   children?: any;
 };

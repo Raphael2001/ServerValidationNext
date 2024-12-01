@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { onKeyDownButton, onKeyDownInput } from "utils/types/inputs";
+import { OnKeyDownButton, OnKeyDownInput } from "utils/types/inputs";
 
 type Props = {
   options: Array<any>;
@@ -36,7 +36,7 @@ function useHighlightedItem(props: Props) {
       element.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
   };
-  function handleKeyDown(e: onKeyDownButton | onKeyDownInput) {
+  function handleKeyDown(e: OnKeyDownButton | OnKeyDownInput) {
     let newHighlightedItem = highlightedItem;
 
     if (e) {

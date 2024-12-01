@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { ApiCallData, updateStatusPayload } from "utils/types/api";
+import { ApiCallData, UpdateStatusPayload } from "utils/types/api";
 
 type ApiQueueState = ApiCallData[];
 const apiQueueInitialState: ApiQueueState = [];
@@ -16,7 +16,7 @@ export const apiQueueSlice = createSlice({
     },
     updateCallStatus: (
       state: ApiQueueState,
-      action: PayloadAction<updateStatusPayload>
+      action: PayloadAction<UpdateStatusPayload>
     ) => {
       const index = state.findIndex((call) => call._id === action.payload._id);
       if (index >= 0) {

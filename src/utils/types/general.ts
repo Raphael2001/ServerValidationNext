@@ -1,5 +1,5 @@
-export type generalServerItem = {
+export type GeneralServerItem = {
   _id: string;
 };
 
-export type FormPayloadType = Record<string, any>; // A general type for any kind of payload
+export type FormPayload = Record<string, any>; // A general type for any kind of payload

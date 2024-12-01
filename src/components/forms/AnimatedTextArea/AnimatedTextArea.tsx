@@ -3,7 +3,7 @@ import React, { ChangeEventHandler, useState } from "react";
 import styles from "./AnimatedTextArea.module.scss";
 import AnimatedPlaceholder from "components/Basic/AnimatedPlaceholder/AnimatedPlaceholder";
 import BasicTextArea from "components/Basic/BasicTextArea/BasicTextArea";
-import BasicInputErrrorMsg from "components/Basic/BasicInputErrrorMsg/BasicInputErrrorMsg";
+import BasicInputErrorMsg from "components/Basic/BasicInputErrorMsg/BasicInputErrorMsg";
 import { generateUniqueId } from "utils/functions";
 import useInputAccessibility from "utils/hooks/useInputAccessibility";
 
@@ -86,7 +86,7 @@ function AnimateTextArea(props: Props) {
         isAnimated={isAnimated}
         isFocus={isFocus}
       />
-      <BasicInputErrrorMsg showError={showError} errorMessage={errorMessage} />
+      <BasicInputErrorMsg showError={showError} errorMessage={errorMessage} />
     </div>
   );
 }

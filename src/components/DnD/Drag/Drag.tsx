@@ -18,13 +18,13 @@ interface Context {
   ref(node: HTMLElement | null): void;
 }
 
-const DragableItemContext = createContext<Context>({
+const DraggableItemContext = createContext<Context>({
   attributes: {},
   listeners: undefined,
   ref() {},
 });
 
-export function DragableItem({ children, id }: PropsWithChildren<Props>) {
+export function DraggableItem({ children, id }: PropsWithChildren<Props>) {
   const {
     attributes,
     isDragging,
@@ -50,16 +50,16 @@ export function DragableItem({ children, id }: PropsWithChildren<Props>) {
   };
 
   return (
-    <DragableItemContext.Provider value={context}>
-      <li className={styles["dragable-item"]} ref={setNodeRef} style={style}>
+    <DraggableItemContext.Provider value={context}>
+      <li className={styles["draggable-item"]} ref={setNodeRef} style={style}>
         {children}
       </li>
-    </DragableItemContext.Provider>
+    </DraggableItemContext.Provider>
   );
 }
 
 export function DragHandle() {
-  const { attributes, listeners, ref } = useContext(DragableItemContext);
+  const { attributes, listeners, ref } = useContext(DraggableItemContext);
 
   return (
     <button

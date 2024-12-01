@@ -3,15 +3,11 @@ const CMS_MODULES = {
   TEXTS: "Texts",
   MEDIA: "Media",
   LINKS: "Links",
-  META_TAGS: "MetaTags",
   GENERAL_INFO: "GeneralInfo",
   USERS: "Users",
   IAM_ROLE: "IAMRole",
-  ITEMS: "Items",
-  ITEMS_MENU: "ItemsMenu",
-  ITEM_INGREDIENTS: "ItemIngredients",
-  INGREDIENTS_MENU: "IngredientsMenu",
   PROJECT: "Project",
   SITES: "Sites",
+  MAILS_TOKENS: "MailsTokens",
 };
 export default CMS_MODULES;

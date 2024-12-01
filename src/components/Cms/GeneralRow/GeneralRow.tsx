@@ -18,7 +18,7 @@ import GeneralInfoInputTypes from "constants/GeneralInfoInputTypes";
 import { useAppSelector } from "utils/hooks/useRedux";
 
 import { copy } from "utils/functions";
-import { generalInfoItem } from "utils/types/init";
+import { GeneralInfoItem } from "utils/types/init";
 import useDeleteItem from "utils/hooks/useDeleteItem";
 import Api from "api/requests";
 
@@ -135,7 +135,7 @@ function RenderInputs(props: inputsProps) {
     }
   }, [formatHeader, multiValues]);
 
-  function onDelete(item: generalInfoItem) {
+  function onDelete(item: GeneralInfoItem) {
     removeItemById(item._id);
   }
 

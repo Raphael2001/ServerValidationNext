@@ -1,7 +1,7 @@
 import { HTMLInputTypeAttribute } from "react";
-import { generalServerItem } from "./general";
+import { GeneralServerItem } from "./general";
 
-export interface FormDataType {
+export interface FormData {
   inputs: Array<FormInputData>;
   initialData?: Object;
 }
@@ -44,13 +44,14 @@ export type InputAccessibility = {
   ariaLabelledBy?: string;
 };
 
-export type onChangeValue =
+export type OnChangeValue =
   | string
-  | Array<string | generalServerItem>
+  | Array<string | GeneralServerItem>
   | number
   | File
   | TimePickerValue
-  | Date;
+  | Date
+  | Boolean;
 
 export type TimePickerValue = {
   minute: string;

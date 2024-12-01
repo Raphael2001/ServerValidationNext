@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useState } from "react";
 
 import styles from "./InputsCreator.module.scss";
 
-import { inputEvent } from "utils/types/inputs";
+import { InputEvent } from "utils/types/inputs";
 import FORM_INPUTS_TYPES from "constants/form-inputs-types";
 import TextInput from "components/forms/TextInput/TextInput";
 import AutoComplete from "components/forms/AutoComplete/AutoComplete";
@@ -12,7 +12,7 @@ import RadioButtons from "components/forms/RadioButtons/RadioButtons";
 import {
   FormInputData,
   TimePickerValue,
-  onChangeValue,
+  OnChangeValue,
 } from "utils/types/form";
 import Select from "components/forms/Select/Select";
 import AnimatedInput from "components/forms/AnimatedInput";
@@ -21,23 +21,24 @@ import AnimateTextArea from "components/forms/AnimatedTextArea/AnimatedTextArea"
 import AutoGrowTextArea from "components/forms/AutoGrowTextArea/AutoGrowTextArea";
 import AnimatedAutoGrowTextArea from "components/forms/AnimatedAutoGrowTextArea/AnimatedAutoGrowTextArea";
 import UploadFileButton from "components/forms/UploadFileButton/UploadFileButton";
-import ChexkBoxs from "components/forms/ChexkBoxs/ChexkBoxs";
-import BitwiseCheckbox from "components/forms/ChexkBoxs/BitwiseCheckboxs";
+import CheckBoxes from "components/forms/CheckBoxes/CheckBoxes";
+import BitwiseCheckbox from "components/forms/CheckBoxes/BitwiseCheckboxes";
 import MultiSelectAutoComplete from "components/forms/MultiSelectAutoComplete/MultiSelectAutoComplete";
-import { generalServerItem } from "utils/types/general";
+import { GeneralServerItem } from "utils/types/general";
 import TableCreator from "components/TableCreator/TableCreator";
 import TABLE_CELL_TYPES from "constants/TableCellType";
 import TimePicker from "components/forms/TimePicker/TimePicker";
 import CustomDatePicker from "components/forms/DatePicker/CustomDatePicker";
 import BorderInput from "components/forms/BorderInput/BorderInput";
+import CheckBox from "components/forms/CheckBox/CheckBox";
 
 type Props = {
   input: FormInputData;
-  onChange: (name: string, value: onChangeValue) => void;
+  onChange: (name: string, value: OnChangeValue) => void;
   showError: (name: string) => boolean;
   value:
     | string
-    | Array<string | generalServerItem>
+    | Array<string | GeneralServerItem>
     | number
     | File
     | TimePickerValue
@@ -101,12 +102,12 @@ function InputsCreator(props: Props) {
     }
   }, [tableHeaderData]);
 
-  function onChangeInput(e: inputEvent) {
+  function onChangeInput(e: InputEvent) {
     const { name, value } = e.target;
     onChange(name, value);
   }
 
-  function onChangeAutoComplete(name: string, option: generalServerItem) {
+  function onChangeAutoComplete(name: string, option: GeneralServerItem) {
     if (option) {
       onChange(name, option._id);
     } else {
@@ -114,13 +115,13 @@ function InputsCreator(props: Props) {
     }
   }
 
-  function onChangeRadio(e: inputEvent) {
+  function onChangeRadio(e: InputEvent) {
     const { id, name } = e.target;
 
     onChange(name, id);
   }
 
-  function onChangeCheckbox(e: inputEvent) {
+  function onChangeCheckboxes(e: InputEvent) {
     const { id, name } = e.target;
 
     if (Array.isArray(value)) {
@@ -136,7 +137,7 @@ function InputsCreator(props: Props) {
     }
   }
 
-  function onChangeOptionsBitwise(e: inputEvent) {
+  function onChangeOptionsBitwise(e: InputEvent) {
     const { id, name } = e.target;
     const option = options.find((o) => o._id === id);
 
@@ -150,7 +151,7 @@ function InputsCreator(props: Props) {
     }
   }
 
-  function onChangeMultiSelect(name: string, option: generalServerItem) {
+  function onChangeMultiSelect(name: string, option: GeneralServerItem) {
     if (option) {
       const id = option._id;
       if (Array.isArray(value)) {
@@ -166,7 +167,7 @@ function InputsCreator(props: Props) {
     return onChange(name, []);
   }
 
-  function onFileChange(e: inputEvent) {
+  function onFileChange(e: InputEvent) {
     const fileList = e.target.files;
     if (fileList) {
       for (let i = 0; i < fileList.length; i++) {
@@ -176,7 +177,7 @@ function InputsCreator(props: Props) {
     }
   }
 
-  function onChangeItemsPostion(data: Array<generalServerItem>) {
+  function onChangeItemsPosition(data: Array<GeneralServerItem>) {
     const idList: Array<string> = [];
     for (const item of data) {
       idList.push(item._id);
@@ -202,6 +203,12 @@ function InputsCreator(props: Props) {
     onChange(name, date);
   }
 
+  function onChangeCheckbox(e: InputEvent) {
+    const { name, checked } = e.target;
+
+    onChange(name, checked);
+  }
+
   function formatValue(value) {
     if (typeof value === "string") {
       return value.toString();
@@ -217,6 +224,7 @@ function InputsCreator(props: Props) {
     if (value instanceof Date) {
       return value;
     }
+
     return value;
   }
 
@@ -341,13 +349,24 @@ function InputsCreator(props: Props) {
       );
       break;
 
-    case FORM_INPUTS_TYPES.CHECKBOX:
+    case FORM_INPUTS_TYPES.CHECKBOXES:
       component = (
-        <ChexkBoxs
+        <CheckBoxes
           {...sharedInputProps}
-          onChange={onChangeCheckbox}
+          onChange={onChangeCheckboxes}
           options={options}
           field={field}
+        />
+      );
+      break;
+
+    case FORM_INPUTS_TYPES.CHECKBOX:
+      component = (
+        <CheckBox
+          {...sharedInputProps}
+          onChange={onChangeCheckbox}
+          id={name}
+          label={label}
         />
       );
       break;
@@ -420,7 +439,7 @@ function InputsCreator(props: Props) {
         <TableCreator
           header={tableHeader}
           data={optionsItems}
-          onChangeItems={onChangeItemsPostion}
+          onChangeItems={onChangeItemsPosition}
           enableDrag={enableDrag}
         />
       )}

@@ -1,4 +1,4 @@
-import { onChangeValue } from "utils/types/form";
+import { OnChangeValue } from "utils/types/form";
 
 function useValidate() {
   const Validations = {
@@ -7,7 +7,7 @@ function useValidate() {
       msg: "",
     },
     not_empty: {
-      valid: (val: onChangeValue) => val !== "" && val !== undefined,
+      valid: (val: OnChangeValue) => val !== "" && val !== undefined,
       msg: "שדה חובה",
     },
     email: {
@@ -70,7 +70,7 @@ function useValidate() {
     },
   };
 
-  function validate(value: onChangeValue, rules: Array<any>) {
+  function validate(value: OnChangeValue, rules: Array<any>) {
     for (const rule of rules) {
       if (Array.isArray(rule)) {
         const [ruleName, ...params] = rule;

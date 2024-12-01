@@ -4,8 +4,8 @@ import useNotificationsHandler from "./useNotificationsHandler";
 import { copy } from "utils/functions";
 import {
   GeneralInfo,
-  generalInfoItem,
-  generalInfoValue,
+  GeneralInfoItem,
+  GeneralInfoValue,
 } from "utils/types/init";
 
 export default function useGeneralInfo(name: string) {
@@ -20,7 +20,7 @@ export default function useGeneralInfo(name: string) {
   const multiValues = Array.isArray(generalInfoData.value);
 
   const removeItemById = (id: string) => {
-    const payload = { name, id };
+    const payload = { name, _id: id };
     function onSuccess() {
       onSuccessNotification();
     }
@@ -31,7 +31,7 @@ export default function useGeneralInfo(name: string) {
   };
 
   function upsertGeneralInfo(
-    value: generalInfoValue,
+    value: GeneralInfoValue,
     callback = () => {},
     title = ""
   ) {

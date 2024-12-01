@@ -14,19 +14,17 @@ import MediaPopup from "./components/MediaPopup/MediaPopup";
 import EditGeneralInfoPopup from "./components/EditGeneralInfoPopup/EditGeneralInfoPopup";
 import GeneralInfoPopup from "./components/GeneralInfoPopup/GeneralInfoPopup";
 import LinksPopup from "./components/LinksPopup/LinksPopup";
-import MetaTagsPopup from "./components/MetaTagsPopup/MetaTagsPopup";
+
 import IAMRolePopup from "./components/IAMRolePopop/IAMRolePopup";
 import CreateUserPopup from "./components/CreateUserPopup/CreateUserPopup";
 import TrashPopup from "./components/TrashPopup/TrashPopup";
 import UpdateUserPopup from "./components/UpdateUserPopup/UpdateUserPopup";
-import ItemsPopup from "./components/ItemsPopup/ItemsPopup";
-import ItemsMenuPopup from "./components/ItemsMenuPopup/ItemsMenuPopup";
-import ItemIngredientsPopup from "./components/ItemIngredientsPopup/ItemIngredientsPopup";
+
 import { useAppSelector } from "utils/hooks/useRedux";
-import ProductPopup from "./components/ProductPopup/ProductPopup";
 import FilesPopup from "./components/FilesPopup/FilesPopup";
 import ProjectPopup from "./components/ProjectPopup/ProjectPopup";
-import SitePopup from "./components/SItePopup/SitePopup";
+import SitePopup from "./components/SitePopup/SitePopup";
+import MailTokenPopup from "./components/MailTokenPopup/MailTokenPopup";
 
 export default function Popups({ className = "" }) {
   const popupsArray = useAppSelector((store) => store.popupsArray);
@@ -71,7 +69,7 @@ export default function Popups({ className = "" }) {
         <GeneralInfoPopup key={key} payload={payload} />
       ),
       [POPUP_TYPES.LINKS]: <LinksPopup key={key} payload={payload} />,
-      [POPUP_TYPES.META_TAGS]: <MetaTagsPopup key={key} payload={payload} />,
+
       [POPUP_TYPES.IAM_ROLE]: <IAMRolePopup key={key} payload={payload} />,
       [POPUP_TYPES.CREATE_USER]: (
         <CreateUserPopup key={key} payload={payload} />
@@ -80,15 +78,13 @@ export default function Popups({ className = "" }) {
       [POPUP_TYPES.UPDATE_USER]: (
         <UpdateUserPopup key={key} payload={payload} />
       ),
-      [POPUP_TYPES.ITEMS]: <ItemsPopup key={key} payload={payload} />,
-      [POPUP_TYPES.ITEMS_MENU]: <ItemsMenuPopup key={key} payload={payload} />,
-      [POPUP_TYPES.ITEM_INGREDIENTS]: (
-        <ItemIngredientsPopup key={key} payload={payload} />
-      ),
-      [POPUP_TYPES.PRODUCT]: <ProductPopup key={key} payload={payload} />,
+
       [POPUP_TYPES.FILES]: <FilesPopup key={key} payload={payload} />,
       [POPUP_TYPES.PROJECT]: <ProjectPopup key={key} payload={payload} />,
-      [POPUP_TYPES.SITE]: <SitePopup key={key} payload={payload} />,
+      [POPUP_TYPES.SITES]: <SitePopup key={key} payload={payload} />,
+      [POPUP_TYPES.MAILS_TOKENS]: (
+        <MailTokenPopup key={key} payload={payload} />
+      ),
     };
 
     const popupToReturn =
@@ -102,13 +98,15 @@ export default function Popups({ className = "" }) {
 
   const renderPopups = () => {
     const popupsToRender = popupsArray.map((popup) => {
-      const key = generateUniqueId();
-
-      const popupComponent = getPopupComponent(key, popup.type, popup.payload);
+      const popupComponent = getPopupComponent(
+        popup.key,
+        popup.type,
+        popup.payload
+      );
       return (
         <div
           className={`priority-` + popup.priority}
-          key={"popup-" + key + popup.type}
+          key={"popup-" + popup.key + popup.type}
         >
           {popupComponent}
         </div>

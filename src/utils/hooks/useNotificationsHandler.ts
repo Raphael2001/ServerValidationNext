@@ -10,7 +10,7 @@ function useNotificationsHandler() {
   function onSuccessNotification() {
     dispatch(
       addNotification({
-        type: NotificationsTypes.SUCCCESS,
+        type: NotificationsTypes.SUCCESS,
         payload: { title: "עודכן בהצלחה", text: "המידע עודכן בהצלחה" },
       })
     );

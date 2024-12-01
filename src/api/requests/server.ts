@@ -1,16 +1,25 @@
 import ServerApiManager from "api/ServerApiManager";
-import { serverProps } from "utils/types/api";
+import ApiValidationService from "services/ApiValidationService";
+import { ServerProps } from "utils/types/api";
 
 const ApiServer = (function () {
-  function init(props: serverProps) {
+  function init(props: ServerProps) {
     return ServerApiManager.execute(props, "init");
   }
 
-  function metaTags(props: serverProps) {
+  function metaTags(props: ServerProps) {
     return ServerApiManager.execute(props, "metaTags");
   }
 
-  return { init, metaTags };
+  function serverValidation(props: ServerProps = {}) {
+    props.settings = props.settings || {};
+
+    props.settings.url = ApiValidationService.validationURL || "";
+
+    return ServerApiManager.execute(props, "init");
+  }
+
+  return { init, metaTags, serverValidation };
 })();
 
 export default ApiServer;

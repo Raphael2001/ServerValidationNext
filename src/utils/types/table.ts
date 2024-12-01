@@ -1,4 +1,4 @@
-import { onChangeCheckboxValue } from "./inputs";
+import { OnChangeCheckboxValue } from "./inputs";
 
 export interface TableAction {
   icon?: string;
@@ -17,7 +17,7 @@ export type TableColorCellOption = {
   id: string | boolean;
 };
 
-export interface cellInput {
+export interface CellInput {
   value: string | number;
   id: string;
   name: string;
@@ -28,15 +28,16 @@ export interface TableHeaderItem {
   type: string;
   options?: TableColorCell;
   uniqueField?: string;
-  onChangeCheckbox?: (value: onChangeCheckboxValue) => void;
+  onChangeCheckbox?: (value: OnChangeCheckboxValue) => void;
   actions?: Array<TableAction>;
-  onChangeInput?: (e: cellInput) => void;
-  dataset?: Array<datasetItem>;
+  onChangeInput?: (e: CellInput) => void;
+  dataset?: Array<DatasetItem>;
   displayField?: string;
   onOptionClick?: TableColorCellOptionClick;
+  copyBtn?: boolean;
 }
 
-type datasetItem = {
+type DatasetItem = {
   _id: string;
 };
 

@@ -1,4 +1,7 @@
 @import "src/styles/imports.scss";
 .general-info-wrapper {
   padding-block: rem(30);
+  .sync-db-btn {
+    margin-top: rem(15);
+  }
 }

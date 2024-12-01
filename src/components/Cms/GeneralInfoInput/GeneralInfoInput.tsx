@@ -5,7 +5,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import styles from "./GeneralInfoInput.module.scss";
 import GeneralInfoInputTypes from "constants/GeneralInfoInputTypes";
 import TextInput from "components/forms/TextInput/TextInput";
-import { inputEvent } from "utils/types/inputs";
+import { InputEvent } from "utils/types/inputs";
 
 import GeneralInfoActions from "../GeneralInfoActions/GeneralInfoActions";
 
@@ -17,7 +17,7 @@ import {
   RotatingTextItemOption,
 } from "utils/types/rotatingText";
 import RotatingTextInputs from "../RotatingTextInputs/RotatingTextInputs";
-import { generalInfoItem, generalInfoValue } from "utils/types/init";
+import { GeneralInfoItem, GeneralInfoValue } from "utils/types/init";
 import { generateUniqueId } from "utils/functions";
 import FileAutoComplete from "../FileAutoComplete/FileAutoComplete";
 
@@ -34,9 +34,9 @@ function GeneralInfoInput({ name, id }: Props) {
     : value ?? { _id: "", data: "" };
 
   const [currentValue, setCurrentValue] =
-    useState<generalInfoValue>(initialValue);
+    useState<GeneralInfoValue>(initialValue);
 
-  function onChange(e: inputEvent) {
+  function onChange(e: InputEvent) {
     const { value } = e.target;
     const data = { _id: generateUniqueId(16), data: value };
 
@@ -67,7 +67,7 @@ function GeneralInfoInput({ name, id }: Props) {
   }
 
   const formattedValue = useMemo(() => {
-    if ((currentValue as generalInfoItem) && "data" in currentValue) {
+    if ((currentValue as GeneralInfoItem) && "data" in currentValue) {
       return currentValue.data;
     }
     return "";
